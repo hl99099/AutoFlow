@@ -1,0 +1,19 @@
+# 构建输出
+bin/
+obj/
+
+# IDE 与用户设置
+.vs/
+*.user
+*.suo
+
+# 运行时产物
+logs/
+*.log
+AutoFlow.config.xml
+AutoFlow.config.xml.bak
+AutoFlow.config.xml.broken
+
+# 截图与临时文件
+.screenshots/
+*.tmp

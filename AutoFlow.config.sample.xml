@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 示例配置：复制并重命名为 AutoFlow.config.xml，与 AutoFlow.exe 放在同一目录 -->
+<AppConfig version="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Settings>
+    <PollFallback>true</PollFallback>
+    <PollIntervalMs>3000</PollIntervalMs>
+    <MinimizeToTray>true</MinimizeToTray>
+    <LogRetainDays>30</LogRetainDays>
+    <LogLevel>Info</LogLevel>
+  </Settings>
+  <Rules>
+    <!-- 示例 1：企业微信启动后，延迟 5 秒拉起 ERP 批处理 -->
+    <Rule id="demo-start" enabled="false" name="企业微信启动后拉起 ERP">
+      <Trigger type="start">
+        <ProcessName>WXWork.exe</ProcessName>
+        <FilePath />
+      </Trigger>
+      <Actions>
+        <Action type="launch">
+          <Path>D:\ERP\start.bat</Path>
+          <Args />
+          <WorkingDir>D:\ERP</WorkingDir>
+          <DelayMs>5000</DelayMs>
+          <RunHidden>true</RunHidden>
+          <RunAsAdmin>false</RunAsAdmin>
+          <SkipIfRunning>true</SkipIfRunning>
+          <CancelIfSourceExited>true</CancelIfSourceExited>
+          <TargetProcessName />
+          <Force>false</Force>
+          <KillTree>false</KillTree>
+        </Action>
+      </Actions>
+    </Rule>
+
+    <!-- 示例 2：企业微信关闭时，同步关闭记事本 -->
+    <Rule id="demo-stop" enabled="false" name="企业微信关闭后关闭记事本">
+      <Trigger type="stop">
+        <ProcessName>WXWork.exe</ProcessName>
+        <FilePath />
+      </Trigger>
+      <Actions>
+        <Action type="close">
+          <Path />
+          <Args />
+          <WorkingDir />
+          <DelayMs>0</DelayMs>
+          <RunHidden>true</RunHidden>
+          <RunAsAdmin>false</RunAsAdmin>
+          <SkipIfRunning>true</SkipIfRunning>
+          <CancelIfSourceExited>true</CancelIfSourceExited>
+          <TargetProcessName>notepad.exe</TargetProcessName>
+          <Force>false</Force>
+          <KillTree>false</KillTree>
+        </Action>
+      </Actions>
+    </Rule>
+  </Rules>
+</AppConfig>
